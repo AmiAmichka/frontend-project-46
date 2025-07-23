@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { readFiles } from './src/parse.js';
+import { compareData, readFiles } from './src/parse.js';
 
 const program = new Command();
 
@@ -9,6 +9,10 @@ program
   .argument('<filepath2>', 'second filepath')
   .option('-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format')
-  .action(readFiles);
+  .action((filepath1, filepath2) => {
+    const [obj1, obj2] = readFiles(filepath1, filepath2);
+
+    compareData(obj1, obj2);
+  });
 
 program.parse();
