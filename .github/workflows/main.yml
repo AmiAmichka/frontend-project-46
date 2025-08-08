@@ -10,7 +10,7 @@ jobs:
       # run – произвольная bash-команда
       - run: npm ci
       - run: make lint
-      - run: make test:coverage
+      - run: make test-coverage
   sonarqube:
     name: SonarQube
     runs-on: macos-latest
