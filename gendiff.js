@@ -12,7 +12,7 @@ program
   .action((filepath1, filepath2) => {
     const [obj1, obj2] = readFiles(filepath1, filepath2);
 
-    compareData(obj1, obj2);
+    console.log(compareData(obj1, obj2));
   });
 
 program.parse();

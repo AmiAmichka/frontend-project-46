@@ -5,7 +5,10 @@
   "main": "gendiff.js",
   "type": "module",
   "scripts": {
-    "test": "jest --watchAll"
+    "start": "node gendiff.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": "Amina",
   "license": "ISC",

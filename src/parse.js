@@ -11,24 +11,25 @@ export const readFiles = (filepath1, filepath2) => {
 };
 
 export const compareData = (obj1, obj2) => {
-  console.log('{');
+  let result = '{\n';
 
   Object.keys(obj1).forEach((key) => {
     if (!Object.hasOwn(obj2, key)) {
-      console.log(`  - ${key}: ${obj1[key]}`);
+      result += `  - ${key}: ${obj1[key]}\n`;
     } else if (obj2[key] !== obj1[key]) {
-      console.log(`  - ${key}: ${obj1[key]}`);
-      console.log(`  + ${key}: ${obj2[key]}`);
+      result += `  - ${key}: ${obj1[key]}\n`;
+      result += `  + ${key}: ${obj2[key]}\n`;
     } else if (obj2[key] === obj1[key]) {
-      console.log(`    ${key}: ${obj1[key]}`);
+      result += `    ${key}: ${obj1[key]}\n`;
     }
   });
 
   Object.keys(obj2).forEach((key) => {
     if (!Object.hasOwn(obj1, key)) {
-      console.log(`  + ${key}: ${obj2[key]}`);
+      result += `  + ${key}: ${obj2[key]}\n`;
     }
   });
 
-  console.log('}');
+  result += '}';
+  return result;
 };
