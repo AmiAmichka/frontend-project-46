@@ -5,7 +5,7 @@
   "main": "gendiff.js",
   "type": "module",
   "scripts": {
-    "test": "vitest --watch"
+    "test": "jest --watchAll"
   },
   "author": "Amina",
   "license": "ISC",
@@ -19,9 +19,6 @@
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^16.0.0",
     "jest": "^30.0.5"
   }
