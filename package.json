@@ -5,7 +5,8 @@
   "main": "gendiff.js",
   "type": "module",
   "scripts": {
-    "start": "node gendiff.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",
+    "start-json": "node gendiff.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",
+    "start-yaml": "node gendiff.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.yaml __fixtures__/file2.yaml",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -13,7 +14,8 @@
   "author": "Amina",
   "license": "ISC",
   "dependencies": {
-    "commander": "^14.0.0"
+    "commander": "^14.0.0",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/create-config": "^1.0.0",

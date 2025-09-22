@@ -1,5 +1,6 @@
 import { Command } from 'commander';
-import { compareData, readFiles } from './src/parse.js';
+import { readFiles } from './src/parse.js';
+import { compareData } from './src/compare.js';
 
 const program = new Command();
 

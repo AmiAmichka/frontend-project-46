@@ -1,31 +1,10 @@
-import { compareData, readFiles } from '../src/parse.js';
+import { obj1, obj2 } from '../__fixtures__/results.js';
+import { readFiles } from '../src/parse.js';
 
-const obj1 = {
-  host: 'hexlet.io',
-  timeout: 50,
-  proxy: '123.234.53.22',
-  follow: false,
-};
-
-const obj2 = {
-  timeout: 20,
-  verbose: true,
-  host: 'hexlet.io',
-};
-
-const comparedDataResult = `{
-    host: hexlet.io
-  - timeout: 50
-  + timeout: 20
-  - proxy: 123.234.53.22
-  - follow: false
-  + verbose: true
-}`;
-
-test('read correct files', () => {
+test('read correct json files', () => {
   expect(readFiles('__fixtures__/file1.json', '__fixtures__/file2.json')).toStrictEqual([obj1, obj2]);
 });
 
-test('compares files correctly', () => {
-  expect(compareData(obj1, obj2)).toBe(comparedDataResult);
+test('read correct yaml files', () => {
+  expect(readFiles('__fixtures__/file1.yaml', '__fixtures__/file2.yaml')).toStrictEqual([obj1, obj2]);
 });
