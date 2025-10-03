@@ -1,23 +1,33 @@
 export const compareData = (obj1, obj2) => {
-  let result = '{\n';
+  const result = [];
 
   Object.keys(obj1).forEach((key) => {
+    let type = 'unchanged';
+
     if (!Object.hasOwn(obj2, key)) {
-      result += `  - ${key}: ${obj1[key]}\n`;
+      type = 'deleted';
     } else if (obj2[key] !== obj1[key]) {
-      result += `  - ${key}: ${obj1[key]}\n`;
-      result += `  + ${key}: ${obj2[key]}\n`;
-    } else if (obj2[key] === obj1[key]) {
-      result += `    ${key}: ${obj1[key]}\n`;
+      type = 'changed';
     }
+
+    result.push({
+      key,
+      type,
+      oldValue: obj1[key],
+      newValue: obj2[key],
+    });
   });
 
   Object.keys(obj2).forEach((key) => {
     if (!Object.hasOwn(obj1, key)) {
-      result += `  + ${key}: ${obj2[key]}\n`;
+      result.push({
+        key,
+        type: 'added',
+        oldValue: null,
+        newValue: obj2[key],
+      });
     }
   });
 
-  result += '}';
   return result;
 };
