@@ -3,6 +3,7 @@ import process from 'node:process';
 import path from 'node:path';
 import { readFiles } from './src/parse.js';
 import { compareData } from './src/compare.js';
+import { formatToStylish } from './src/styles.js';
 
 const program = new Command();
 
@@ -18,7 +19,8 @@ program
       path.resolve(process.cwd(), filepath2),
     );
 
-    console.log(compareData(obj1, obj2));
+    const result = compareData(obj1, obj2);
+    console.log(formatToStylish(result));
   });
 
 program.parse();
