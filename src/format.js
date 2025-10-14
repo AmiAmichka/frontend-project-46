@@ -9,7 +9,7 @@ export const formatToStylish = (data) => {
       result += `  + ${key}: ${newValue}\n`;
     } else if (type === 'deleted') {
       result += `  - ${key}: ${oldValue}\n`;
-    } else if (type === 'added') {
+    } else {
       result += `  + ${key}: ${newValue}\n`;
     }
   });

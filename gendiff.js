@@ -3,7 +3,7 @@ import process from 'node:process';
 import path from 'node:path';
 import { readFiles } from './src/parse.js';
 import { compareData } from './src/compare.js';
-import { formatToStylish } from './src/styles.js';
+import { formatToStylish } from './src/format.js';
 
 const program = new Command();
 
