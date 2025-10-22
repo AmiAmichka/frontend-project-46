@@ -1,20 +1,50 @@
-export const formatToStylish = (data) => {
-  let result = '{\n';
+import { isObject } from './compare.js';
 
-  data.forEach(({ key, type, oldValue, newValue }) => {
-    if (type === 'unchanged') {
-      result += `    ${key}: ${oldValue}\n`;
+const makeStupidSpaces = (counter) => {
+  let spaces = '';
+
+  for (let i = 0; i <= counter * 4 - 2; i += 1) {
+    spaces += ' ';
+  }
+  return spaces;
+};
+
+const formatObjectToStylish = (object, counter) => {
+  let result = '{\n';
+  const spaces = makeStupidSpaces(counter);
+
+  Object.entries(object).forEach(([key, value]) => {
+    result += `${spaces}  ${key}: ${isObject(value) ? formatObjectToStylish(value, counter + 1) : value}\n`;
+  });
+
+  result += `${makeStupidSpaces(counter - 1)}  }`;
+
+  return result;
+};
+
+export const formatToStylish = (data, counter = 1) => {
+  let result = '{\n';
+  const spaces = makeStupidSpaces(counter);
+
+  data.forEach(({ key, type, oldValue, newValue, childrenResult }) => {
+    if (type === 'nested') {
+      result += `${spaces}  ${key}: ${formatToStylish(
+        childrenResult,
+        counter + 1,
+      )}\n`;
+    } else if (type === 'unchanged') {
+      result += `${spaces}  ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
     } else if (type === 'changed') {
-      result += `  - ${key}: ${oldValue}\n`;
-      result += `  + ${key}: ${newValue}\n`;
+      result += `${spaces}- ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
+      result += `${spaces}+ ${key}: ${isObject(newValue) ? formatObjectToStylish(newValue, counter + 1) : newValue}\n`;
     } else if (type === 'deleted') {
-      result += `  - ${key}: ${oldValue}\n`;
+      result += `${spaces}- ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
     } else {
-      result += `  + ${key}: ${newValue}\n`;
+      result += `${spaces}+ ${key}: ${isObject(newValue) ? formatObjectToStylish(newValue, counter + 1) : newValue}\n`;
     }
   });
 
-  result += '}';
+  result += `${makeStupidSpaces(counter - 1)}  }`;
 
   return result;
 };
