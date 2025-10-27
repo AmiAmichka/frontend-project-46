@@ -1,6 +1,6 @@
 import { isObject } from './compare.js';
 
-const makeStupidSpaces = (counter) => {
+const makeSpaces = (counter) => {
   let spaces = '';
 
   for (let i = 0; i <= counter * 4 - 2; i += 1) {
@@ -11,20 +11,20 @@ const makeStupidSpaces = (counter) => {
 
 const formatObjectToStylish = (object, counter) => {
   let result = '{\n';
-  const spaces = makeStupidSpaces(counter);
+  const spaces = makeSpaces(counter);
 
   Object.entries(object).forEach(([key, value]) => {
     result += `${spaces}  ${key}: ${isObject(value) ? formatObjectToStylish(value, counter + 1) : value}\n`;
   });
 
-  result += `${makeStupidSpaces(counter - 1)}  }`;
+  result += `${makeSpaces(counter - 1)}  }`;
 
   return result;
 };
 
 export const formatToStylish = (data, counter = 1) => {
   let result = '{\n';
-  const spaces = makeStupidSpaces(counter);
+  const spaces = makeSpaces(counter);
 
   data.forEach(({ key, type, oldValue, newValue, childrenResult }) => {
     if (type === 'nested') {
@@ -44,7 +44,7 @@ export const formatToStylish = (data, counter = 1) => {
     }
   });
 
-  result += `${makeStupidSpaces(counter - 1)}  }`;
+  result += `${makeSpaces(counter - 1)}  }`;
 
   return result;
 };

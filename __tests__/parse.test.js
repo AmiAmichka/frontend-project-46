@@ -1,4 +1,4 @@
-import { obj1, obj2 } from '../__fixtures__/results.js';
+import { obj1, obj2 } from '../__fixtures__/parsed.js';
 import { readFiles } from '../src/parse.js';
 
 test('read correct json files', () => {
