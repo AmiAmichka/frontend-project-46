@@ -1,4 +1,4 @@
-import { isObject } from './compare.js';
+import { isObject } from '../compare.js';
 
 const makeSpaces = (counter) => {
   let spaces = '';

@@ -1,15 +1,13 @@
-import process from 'node:process';
-import path from 'node:path';
-import { readFiles } from './parse.js';
+import { readFile } from './parse.js';
 import { compareData } from './compare.js';
-import { formatToStylish } from './format.js';
+import { formatResult } from './formatters/index.js';
 
-export const generateDifferences = (filepath1, filepath2) => {
-  const [obj1, obj2] = readFiles(
-    path.resolve(process.cwd(), filepath1),
-    path.resolve(process.cwd(), filepath2),
-  );
+export const generateDifferences = (filepath1, filepath2, options = {}) => {
+  const obj1 = readFile(filepath1);
+
+  const obj2 = readFile(filepath2);
 
   const result = compareData(obj1, obj2);
-  console.log(formatToStylish(result));
+
+  return formatResult(result, options.format);
 };
