@@ -5,3 +5,5 @@
 task 4, 6 - https://asciinema.org/a/4XVjOh0eZGj0l8Y12mKgcizY6
 
 task 8 - https://asciinema.org/a/TA8SFmFqOsURfyTQdHTXzi3XV
+
+task 9 - https://asciinema.org/a/Gn4Mg0W4J6F9MjrAASVmwYraY

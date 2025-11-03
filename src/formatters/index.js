@@ -1,3 +1,4 @@
+import { formatToJson } from './json.js';
 import { formatToPlain } from './plain.js';
 import { formatToStylish } from './stylish.js';
 
@@ -12,7 +13,7 @@ export const formatResult = (result, format = 'stylish') => {
       finalResult = formatToPlain(result);
       break;
     case 'json':
-      finalResult = 'такого вывода пока нет';
+      finalResult = formatToJson(result);
       break;
     default:
       console.log(`Формат ${format} не поддерживается. Программа отформатирует в stylish.`);

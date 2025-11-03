@@ -7,6 +7,7 @@
   "scripts": {
     "start-json": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",
     "start-json-plain": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json --format plain",
+    "start-json-json": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json --format json",
     "start-yaml": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.yaml __fixtures__/file2.yaml",
     "test": "jest",
     "test:watch": "jest --watch",
