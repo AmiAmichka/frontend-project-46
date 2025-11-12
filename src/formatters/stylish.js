@@ -2,7 +2,7 @@ import { isObject } from '../compare.js';
 
 const makeSpaces = (counter) => {
   if (counter > 0) {
-    return ' '.repeat(counter * 4 - 1);
+    return ' '.repeat(counter * 4 - 2);
   }
 
   return '';
