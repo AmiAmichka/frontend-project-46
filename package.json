@@ -4,6 +4,9 @@
   "description": "Compares two configuration files and shows a difference",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "gendiff": "./index.js"
+  },
   "scripts": {
     "start-json": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",
     "start-json-plain": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json --format plain",

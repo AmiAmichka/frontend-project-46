@@ -13,14 +13,25 @@ export const formatToPlain = (data, path = '') => {
 
   data.forEach(({ key, type, oldValue, newValue, childrenResult }) => {
     const finalPath = `${path}${key}`;
-    if (type === 'nested') {
-      result += formatToPlain(childrenResult, `${finalPath}.`);
-    } else if (type === 'added') {
-      result += `Property '${finalPath}' was added with value: ${stringify(newValue)}\n`;
-    } else if (type === 'changed') {
-      result += `Property '${finalPath}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}\n`;
-    } else if (type === 'deleted') {
-      result += `Property '${finalPath}' was removed.\n`;
+    switch (type) {
+      case 'nested':
+        result += formatToPlain(childrenResult, `${finalPath}.`);
+        break;
+      case 'changed':
+        result += `Property '${finalPath}' was updated. From ${stringify(
+          oldValue,
+        )} to ${stringify(newValue)}\n`;
+        break;
+      case 'deleted':
+        result += `Property '${finalPath}' was removed.\n`;
+        break;
+      case 'added':
+        result += `Property '${finalPath}' was added with value: ${stringify(
+          newValue,
+        )}\n`;
+        break;
+      default:
+        break;
     }
   });
 

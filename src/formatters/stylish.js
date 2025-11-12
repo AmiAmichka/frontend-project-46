@@ -1,12 +1,11 @@
 import { isObject } from '../compare.js';
 
 const makeSpaces = (counter) => {
-  let spaces = '';
-
-  for (let i = 0; i <= counter * 4 - 2; i += 1) {
-    spaces += ' ';
+  if (counter > 0) {
+    return ' '.repeat(counter * 4 - 2);
   }
-  return spaces;
+
+  return '';
 };
 
 const formatObjectToStylish = (object, counter) => {
@@ -14,7 +13,9 @@ const formatObjectToStylish = (object, counter) => {
   const spaces = makeSpaces(counter);
 
   Object.entries(object).forEach(([key, value]) => {
-    result += `${spaces}  ${key}: ${isObject(value) ? formatObjectToStylish(value, counter + 1) : value}\n`;
+    result += `${spaces}  ${key}: ${
+      isObject(value) ? formatObjectToStylish(value, counter + 1) : value
+    }\n`;
   });
 
   result += `${makeSpaces(counter - 1)}  }`;
@@ -27,20 +28,48 @@ export const formatToStylish = (data, counter = 1) => {
   const spaces = makeSpaces(counter);
 
   data.forEach(({ key, type, oldValue, newValue, childrenResult }) => {
-    if (type === 'nested') {
-      result += `${spaces}  ${key}: ${formatToStylish(
-        childrenResult,
-        counter + 1,
-      )}\n`;
-    } else if (type === 'unchanged') {
-      result += `${spaces}  ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
-    } else if (type === 'changed') {
-      result += `${spaces}- ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
-      result += `${spaces}+ ${key}: ${isObject(newValue) ? formatObjectToStylish(newValue, counter + 1) : newValue}\n`;
-    } else if (type === 'deleted') {
-      result += `${spaces}- ${key}: ${isObject(oldValue) ? formatObjectToStylish(oldValue, counter + 1) : oldValue}\n`;
-    } else {
-      result += `${spaces}+ ${key}: ${isObject(newValue) ? formatObjectToStylish(newValue, counter + 1) : newValue}\n`;
+    switch (type) {
+      case 'nested':
+        result += `${spaces}  ${key}: ${formatToStylish(
+          childrenResult,
+          counter + 1,
+        )}\n`;
+        break;
+      case 'unchanged':
+        result += `${spaces}  ${key}: ${
+          isObject(oldValue)
+            ? formatObjectToStylish(oldValue, counter + 1)
+            : oldValue
+        }\n`;
+        break;
+      case 'changed':
+        result += `${spaces}- ${key}: ${
+          isObject(oldValue)
+            ? formatObjectToStylish(oldValue, counter + 1)
+            : oldValue
+        }\n`;
+        result += `${spaces}+ ${key}: ${
+          isObject(newValue)
+            ? formatObjectToStylish(newValue, counter + 1)
+            : newValue
+        }\n`;
+        break;
+      case 'deleted':
+        result += `${spaces}- ${key}: ${
+          isObject(oldValue)
+            ? formatObjectToStylish(oldValue, counter + 1)
+            : oldValue
+        }\n`;
+        break;
+      case 'added':
+        result += `${spaces}+ ${key}: ${
+          isObject(newValue)
+            ? formatObjectToStylish(newValue, counter + 1)
+            : newValue
+        }\n`;
+        break;
+      default:
+        break;
     }
   });
 
