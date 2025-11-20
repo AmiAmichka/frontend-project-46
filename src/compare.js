@@ -38,5 +38,13 @@ export const compareData = (obj1, obj2) => {
     }
   });
 
+  result.sort((a, b) => {
+    if (a.key > b.key) {
+      return 1;
+    }
+
+    return -1;
+  });
+
   return result;
 };

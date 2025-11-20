@@ -73,7 +73,7 @@ export const formatToStylish = (data, counter = 1) => {
     }
   });
 
-  result += `${makeSpaces(counter - 1)}  }`;
+  result += `${makeSpaces(counter - 1)}${counter === 1 ? '' : '  '}}`;
 
   return result;
 };
