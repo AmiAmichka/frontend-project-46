@@ -23,7 +23,7 @@ export const formatToPlain = (data, path = '') => {
         )} to ${stringify(newValue)}\n`;
         break;
       case 'deleted':
-        result += `Property '${finalPath}' was removed.\n`;
+        result += `Property '${finalPath}' was removed\n`;
         break;
       case 'added':
         result += `Property '${finalPath}' was added with value: ${stringify(
