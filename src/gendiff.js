@@ -2,7 +2,7 @@ import { readFile } from './parse.js';
 import { compareData } from './compare.js';
 import { formatResult } from './formatters/index.js';
 
-export const generateDifferences = (filepath1, filepath2, options = {}) => {
+export default (filepath1, filepath2, options = {}) => {
   if (!filepath1 || !filepath2) {
     return '';
   }
