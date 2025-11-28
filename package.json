@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": {
-    "gendiff": "./index.js"
+    "gendiff": "./bin/gendiff.js"
   },
   "scripts": {
     "start-json": "node index.js /Users/amina/Hexlet/hexlet-project2/frontend-project-46/__fixtures__/file1.json __fixtures__/file2.json",

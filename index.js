@@ -1,16 +1,17 @@
-#!/usr/bin/env node
+import { readFile } from './src/parse.js';
+import { compareData } from './src/compare.js';
+import { formatResult } from './src/formatters/index.js';
 
-import { Command } from 'commander';
-import generateDifferences from './src/gendiff.js';
+export default (filepath1, filepath2, options = {}) => {
+  if (!filepath1 || !filepath2) {
+    return '';
+  }
 
-const program = new Command();
+  const obj1 = readFile(filepath1);
 
-program
-  .description('Compares two configuration files and shows a difference.')
-  .argument('[filepath1]', 'first filepath')
-  .argument('[filepath2]', 'second filepath')
-  .option('-V, --version', 'output the version number')
-  .option('-f, --format [type]', 'output format', 'stylish')
-  .action(generateDifferences);
+  const obj2 = readFile(filepath2);
 
-program.parse();
+  const result = compareData(obj1, obj2);
+
+  return formatResult(result, options.format);
+};

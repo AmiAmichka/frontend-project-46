@@ -20,7 +20,5 @@ export const formatResult = (result, format = 'stylish') => {
       finalResult = formatToStylish(result);
   }
 
-  console.log(finalResult);
-
   return finalResult;
 };
