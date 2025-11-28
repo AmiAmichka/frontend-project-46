@@ -2,7 +2,7 @@ import { readFile } from './src/parse.js';
 import { compareData } from './src/compare.js';
 import { formatResult } from './src/formatters/index.js';
 
-export default (filepath1, filepath2, options = {}) => {
+export default (filepath1, filepath2, format = 'stylish') => {
   if (!filepath1 || !filepath2) {
     return '';
   }
@@ -13,5 +13,5 @@ export default (filepath1, filepath2, options = {}) => {
 
   const result = compareData(obj1, obj2);
 
-  return formatResult(result, options.format);
+  return formatResult(result, format);
 };

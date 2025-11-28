@@ -12,7 +12,7 @@ program
   .option('-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format', 'stylish')
   .action((path1, path2, options = {}) => {
-    console.log(generateDifferences(path1, path2, options));
+    console.log(generateDifferences(path1, path2, options.format));
   });
 
 program.parse();
