@@ -11,6 +11,7 @@ export const formatResult = (result, format = 'stylish') => {
       break;
     case 'plain':
       finalResult = formatToPlain(result);
+      finalResult = finalResult.slice(0, finalResult.length - 1);
       break;
     case 'json':
       finalResult = formatToJson(result);
