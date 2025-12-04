@@ -1,39 +1,39 @@
 const stringify = (value) => {
   if (typeof value === 'object' && value !== null) {
-    return '[complex value]';
+    return '[complex value]'
   }
   if (typeof value === 'string') {
-    return `'${value}'`;
+    return `'${value}'`
   }
-  return String(value);
-};
+  return String(value)
+}
 
 export const formatToPlain = (data, path = '') => {
-  let result = '';
+  let result = ''
 
   data.forEach(({ key, type, oldValue, newValue, childrenResult }) => {
-    const finalPath = `${path}${key}`;
+    const finalPath = `${path}${key}`
     switch (type) {
       case 'nested':
-        result += formatToPlain(childrenResult, `${finalPath}.`);
-        break;
+        result += formatToPlain(childrenResult, `${finalPath}.`)
+        break
       case 'changed':
         result += `Property '${finalPath}' was updated. From ${stringify(
           oldValue,
-        )} to ${stringify(newValue)}\n`;
-        break;
+        )} to ${stringify(newValue)}\n`
+        break
       case 'deleted':
-        result += `Property '${finalPath}' was removed\n`;
-        break;
+        result += `Property '${finalPath}' was removed\n`
+        break
       case 'added':
         result += `Property '${finalPath}' was added with value: ${stringify(
           newValue,
-        )}\n`;
-        break;
+        )}\n`
+        break
       default:
-        break;
+        break
     }
-  });
+  })
 
-  return result;
-};
+  return result
+}

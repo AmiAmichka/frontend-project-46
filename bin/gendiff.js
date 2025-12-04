@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import generateDifferences from '../index.js';
+import { Command } from 'commander'
+import generateDifferences from '../index.js'
 
-const program = new Command();
+const program = new Command()
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -12,7 +12,7 @@ program
   .option('-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format', 'stylish')
   .action((path1, path2, options = {}) => {
-    console.log(generateDifferences(path1, path2, options.format));
-  });
+    console.log(generateDifferences(path1, path2, options.format))
+  })
 
-program.parse();
+program.parse()

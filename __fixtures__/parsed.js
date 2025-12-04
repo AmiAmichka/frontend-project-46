@@ -23,7 +23,7 @@ export const obj1 = {
       id: 45,
     },
   },
-};
+}
 
 export const obj2 = {
   common: {
@@ -55,4 +55,4 @@ export const obj2 = {
     },
     fee: 100500,
   },
-};
+}
