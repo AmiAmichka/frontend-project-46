@@ -55,8 +55,9 @@ export default [
       'import/no-extraneous-dependencies': 'off',
       'object-curly-newline': 'off',
       'arrow-parens': [2, 'as-needed', { requireForBlockBody: true }],
-      semi: ['error', 'never'],
+      'semi': ['error', 'never'],
       'brace-style': ['error', 'stroustrup'],
+      'quote-props': ['error', 'consistent'],
     },
   },
 ]
